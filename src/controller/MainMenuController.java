@@ -2,12 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,19 +10,13 @@ import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
 
-    Stage stage;
-    Parent scene;
+    InventoryTestMethod newPage = new InventoryTestMethod();
 
     @FXML
     void onActionAddPart(ActionEvent event) throws IOException {
         System.out.println("Add Part");
 
-        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/AddPart.fxml"));
-        stage.setScene(new Scene(scene));
-        //stage.setTitle(pageTitle);
-        stage.show();
-
+        newPage.switchStage(event, "/view/AddPart.fxml");
     }
 
     @FXML
@@ -73,5 +62,12 @@ public class MainMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Main Menu is Initialized");
+
+        System.out.println("Part Counter is: " + InventoryTestMethod.partCounter);
+
+        System.out.println("Part Counter is now: " + InventoryTestMethod.increaseCounter());
+
+        System.out.println("Part Counter is: " + InventoryTestMethod.partCounter);
+
     }
 }
