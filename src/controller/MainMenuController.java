@@ -3,6 +3,8 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,8 +22,10 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void onActionAddProduct(ActionEvent event) {
+    void onActionAddProduct(ActionEvent event) throws IOException {
         System.out.println("Add Product");
+
+        newPage.switchStage(event, "/view/AddProduct.fxml");
     }
 
     @FXML
@@ -58,6 +62,37 @@ public class MainMenuController implements Initializable {
     void onActionSearchProducts(ActionEvent event) {
         System.out.println("Searching Products");
     }
+
+    @FXML
+    private TableColumn<?, ?> partIdCol;
+
+    @FXML
+    private TableColumn<?, ?> partInvCol;
+
+    @FXML
+    private TableColumn<?, ?> partNameCol;
+
+    @FXML
+    private TableColumn<?, ?> partPriceCol;
+
+    @FXML
+    private TableView<?> partTableView;
+
+    @FXML
+    private TableColumn<?, ?> productIdCol;
+
+    @FXML
+    private TableColumn<?, ?> productInvCol;
+
+    @FXML
+    private TableColumn<?, ?> productNameCol;
+
+    @FXML
+    private TableColumn<?, ?> productPriceCol;
+
+    @FXML
+    private TableView<?> productTableView;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

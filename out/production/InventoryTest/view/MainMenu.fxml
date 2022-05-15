@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="418.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
    <children>
       <Label layoutX="24.0" layoutY="21.0" text="Inventory Management System">
@@ -18,12 +17,12 @@
          </font>
       </Label>
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffffff00" height="298.0" layoutX="24.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="518.0" />
-      <TableView layoutX="48.0" layoutY="104.0" prefHeight="190.0" prefWidth="470.0">
+      <TableView fx:id="partTableView" layoutX="48.0" layoutY="104.0" prefHeight="190.0" prefWidth="470.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Part ID" />
-          <TableColumn prefWidth="171.20001220703125" text="Part Name" />
-            <TableColumn prefWidth="97.5999755859375" text="Inventory Level" />
-            <TableColumn prefWidth="126.39999389648438" text="Price/Cost per Unit" />
+          <TableColumn fx:id="partIdCol" prefWidth="75.0" text="Part ID" />
+          <TableColumn fx:id="partNameCol" prefWidth="171.20001220703125" text="Part Name" />
+            <TableColumn fx:id="partInvCol" prefWidth="97.5999755859375" text="Inventory Level" />
+            <TableColumn fx:id="partPriceCol" prefWidth="126.39999389648438" text="Price/Cost per Unit" />
         </columns>
       </TableView>
       <TextField layoutX="324.0" layoutY="71.0" onAction="#onActionSearchParts" prefHeight="26.0" prefWidth="193.0" promptText="Search by Part ID or Name" />
@@ -36,12 +35,12 @@
       <Button layoutX="463.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionDeletePart" text="Delete" />
       <Button layoutX="317.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionAddPart" text="Add" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffffff00" height="298.0" layoutX="579.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="518.0" />
-      <TableView layoutX="603.0" layoutY="104.0" prefHeight="190.0" prefWidth="470.0">
+      <TableView fx:id="productTableView" layoutX="603.0" layoutY="104.0" prefHeight="190.0" prefWidth="470.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="Product ID" />
-            <TableColumn prefWidth="171.20001220703125" text="Product Name" />
-            <TableColumn prefWidth="97.5999755859375" text="Inventory Level" />
-            <TableColumn prefWidth="126.39999389648438" text="Price/Cost per Unit" />
+            <TableColumn fx:id="productIdCol" prefWidth="75.0" text="Product ID" />
+            <TableColumn fx:id="productNameCol" prefWidth="171.20001220703125" text="Product Name" />
+            <TableColumn fx:id="productInvCol" prefWidth="97.5999755859375" text="Inventory Level" />
+            <TableColumn fx:id="productPriceCol" prefWidth="126.39999389648438" text="Price/Cost per Unit" />
          </columns>
       </TableView>
       <TextField layoutX="879.0" layoutY="71.0" onAction="#onActionSearchProducts" prefHeight="26.0" prefWidth="193.0" promptText="Search by Product ID or Name" />
