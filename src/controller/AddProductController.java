@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -64,8 +65,13 @@ public class AddProductController implements Initializable {
     private TextField productPriceTxt;
 
     @FXML
+    private Label addProductWarning;
+
+    @FXML
     void onActionAddPart(ActionEvent event) throws IOException {
 
+        //This is just to test the warning label
+        addProductWarning.setText("testing\ntesting\ntesting\ntesting\ntesting\ntesting\n");
     }
 
     @FXML
