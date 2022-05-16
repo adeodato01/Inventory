@@ -47,6 +47,9 @@ public class AddPartController implements Initializable {
     private TextField priceField;
 
     @FXML
+    private Label addPartWarning;
+
+    @FXML
     void inHouseSelected(ActionEvent event) {
         machineIdOrCompanyName.setText("Machine ID");
     }
@@ -60,7 +63,9 @@ public class AddPartController implements Initializable {
     @FXML
     void onActionAddPart(ActionEvent event) throws IOException {
 
-        newPage.switchStage(event, "/view/MainMenu.fxml");
+        addPartWarning.setText("testing\ntesting\ntesting\ntesting\ntesting\ntesting\n");
+
+//        newPage.switchStage(event, "/view/MainMenu.fxml");
     }
 
     @FXML

@@ -53,5 +53,6 @@
       <Button layoutX="1018.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionDeleteProduct" text="Delete" />
       <Button layoutX="872.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionAddProduct" text="Add" />
       <Button layoutX="983.0" layoutY="372.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionExitApp" text="Exit" />
+      <Label fx:id="deleteProductWarning" layoutX="604.0" layoutY="363.0" textFill="RED" />
    </children>
 </AnchorPane>

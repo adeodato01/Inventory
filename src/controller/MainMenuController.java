@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -13,6 +14,10 @@ import java.util.ResourceBundle;
 public class MainMenuController implements Initializable {
 
     InventoryTestMethod newPage = new InventoryTestMethod();
+
+    @FXML
+    private Label deleteProductWarning;
+
 
     @FXML
     void onActionAddPart(ActionEvent event) throws IOException {
@@ -36,6 +41,8 @@ public class MainMenuController implements Initializable {
     @FXML
     void onActionDeleteProduct(ActionEvent event) {
         System.out.println("Delete Selected Product");
+
+        deleteProductWarning.setText("Cannot delete. Product has associated parts.");
     }
 
     @FXML

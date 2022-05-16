@@ -17,7 +17,7 @@ public class InventoryTestMethod {
 
     static int partCounter = 0;
 
-    /** This is the Increase Counter method.
+    /** This is the Increase Counter static method.
      * This method increments the partCounter static variable.
      * @return Returns an increased partCoutner int.
      */
