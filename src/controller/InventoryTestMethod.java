@@ -19,8 +19,9 @@ public class InventoryTestMethod {
     private Parent scene;
 
     private static int partCounter = 0;
+    private static int productCounter = 1000;
 
-    /** This static method gets the Part Counter variable value
+    /** This static method retrieves the Part Counter variable value.
      *
      * @return the current value of the Part Counter
      */
@@ -28,13 +29,30 @@ public class InventoryTestMethod {
         return partCounter;
     }
 
-    /** This is the Increase Counter static method.
+    /** This is the Increase Part Counter static method.
      * This method increments the partCounter static variable.
-     * @return Returns an increased partCoutner int.
+     * @return Returns an increased partCounter int.
      */
-    public static int increaseCounter() {
+    public static int increasePartCounter() {
         partCounter++;
         return partCounter;
+    }
+
+    /** This static method retrieves the Product Counter variable value.
+     *
+     * @return the current value of the Product Counter
+     */
+    public static int getProductCounter() {
+        return productCounter;
+    }
+
+    /** This is the Increase Product Counter static method.
+     * This method increments the productCounter static variable
+     * @return Returns an increased productCounter int.
+     */
+    public static int increaseProductCounter() {
+        productCounter++;
+        return productCounter;
     }
 
     /** This is the Switch Stage method.

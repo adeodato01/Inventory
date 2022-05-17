@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.InHouse;
 import model.Inventory;
 import model.Outsourced;
 
@@ -35,7 +36,7 @@ public class InventoryTestMain extends Application {
         System.out.println("before launch");
 
         Outsourced part1 = new Outsourced(
-                InventoryTestMethod.increaseCounter(),
+                InventoryTestMethod.increasePartCounter(),
                 "Seat",
                 29.99,
                 5,
@@ -43,14 +44,24 @@ public class InventoryTestMain extends Application {
                 10,
                 "WinCo");
 
+        InHouse part2 = new InHouse(
+                InventoryTestMethod.increasePartCounter(),
+                "Wheel",
+                59.99,
+                12,
+                1,
+                90,
+                24);
+
         Inventory.addPart(part1);
+        Inventory.addPart(part2);
 
-        System.out.println("part1 ID is: " + part1.getId());
 
-        System.out.println("The part counter is now: " + InventoryTestMethod.getPartCounter());
 
+        // This line launches the GUI. Any pre-setting can be coded before this line.
         launch(args);
 
+        //Code after this point runs if the "Red X" is clicked at the top right of the app.
         System.out.println("do we get to this line?");
     }
 }

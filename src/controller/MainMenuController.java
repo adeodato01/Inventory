@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Inventory;
 import model.Part;
+import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,7 +50,7 @@ public class MainMenuController implements Initializable {
     }
 
     /** On Button Press, this method will delete the selected part from the Parts table
-     *
+     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
@@ -58,7 +59,7 @@ public class MainMenuController implements Initializable {
     }
 
     /** On Button Press, this method will delete the selected product from the Products table
-     *
+     * @// FIXME: 5/16/2022 Build me!
      * @param event
      */
     @FXML
@@ -75,12 +76,13 @@ public class MainMenuController implements Initializable {
      */
     @FXML
     void onActionExitApp(ActionEvent event) throws IOException {
-
+        //System.out.println("before exit");
         System.exit(0);
+        //no code is run after the above line.
     }
 
     /** On Button Press, this method will take the user to the Modify Part page.
-     *
+     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
@@ -89,7 +91,7 @@ public class MainMenuController implements Initializable {
     }
 
     /** On Button Press, this method will take the user to the Modify Product page.
-     *
+     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
@@ -98,7 +100,7 @@ public class MainMenuController implements Initializable {
     }
 
     /** After hitting "Enter" key in the search field, this method will search and display parts.
-     *
+     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
@@ -107,7 +109,7 @@ public class MainMenuController implements Initializable {
     }
 
     /** After hitting "Enter" key in the search field, this method will search and display products.
-     *
+     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
@@ -131,19 +133,19 @@ public class MainMenuController implements Initializable {
     private TableView<Part> partTableView;
 
     @FXML
-    private TableColumn<?, ?> productIdCol;
+    private TableColumn<Product, Integer> productIdCol;
 
     @FXML
-    private TableColumn<?, ?> productInvCol;
+    private TableColumn<Product, Integer> productInvCol;
 
     @FXML
-    private TableColumn<?, ?> productNameCol;
+    private TableColumn<Product, String> productNameCol;
 
     @FXML
-    private TableColumn<?, ?> productPriceCol;
+    private TableColumn<Product, Double> productPriceCol;
 
     @FXML
-    private TableView<?> productTableView;
+    private TableView<Product> productTableView;
 
 
     /** This method displays the Main Menu.
@@ -160,6 +162,12 @@ public class MainMenuController implements Initializable {
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        productTableView.setItems(Inventory.getAllProducts());
+        productIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        productInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        productPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
     }
 }
