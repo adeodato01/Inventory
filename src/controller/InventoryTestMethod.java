@@ -10,12 +10,23 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/** This public class contains additional variables and public methods to be used throughout the Inventory app.
+ *
+ */
 public class InventoryTestMethod {
 
-    Stage stage;
-    Parent scene;
+    private Stage stage;
+    private Parent scene;
 
-    static int partCounter = 0;
+    private static int partCounter = 0;
+
+    /** This static method gets the Part Counter variable value
+     *
+     * @return the current value of the Part Counter
+     */
+    public static int getPartCounter() {
+        return partCounter;
+    }
 
     /** This is the Increase Counter static method.
      * This method increments the partCounter static variable.

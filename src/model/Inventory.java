@@ -1,15 +1,22 @@
 package model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /** This is a class that contains static lists of
  * all the Parts and all the Products along with their
  * static associated methods.
+ * <p>
+ * <br>
+ * Missing code after <i><b><code>allParts</code></b></i> and <i><b><code>allProducts</code></b></i> attributes
+ * created an InvocationTargetException on 5/16/2022
+ * <p>
+ * This was repaired by adding <b><code>" = FXCollections.observableArrayList()"</code></b> to <i><b><code>allParts</code></b></i> and <i><b><code>allProducts</code></b></i> attributes.
  */
 public class Inventory {
 
-    private static ObservableList<Part> allParts;
-    private static ObservableList<Product> allProducts;
+    private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
     /** This static method adds a part to the allParts list.
      *
