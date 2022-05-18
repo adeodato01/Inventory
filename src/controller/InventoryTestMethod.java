@@ -21,6 +21,36 @@ public class InventoryTestMethod {
     private static int partCounter = 0;
     private static int productCounter = 1000;
 
+    private static int validationError = 0;
+
+    /** This method sets the Validation Error value.
+     *
+     * @param validationError an integer
+     */
+    public static void setValidationError(int validationError) {
+        InventoryTestMethod.validationError = validationError;
+    }
+
+
+    /** This is the Increase Part Error static method.
+     * This method increments the partError static variable.
+     * @return Returns an increased partError int.
+     */
+    public static int increaseValidationError() {
+        validationError++;
+        return validationError;
+    }
+
+
+    /** This method returns the value of Validation Error.
+     *
+     * @return an integer
+     */
+    public static int getValidationError() {
+        return validationError;
+    }
+
+
     /** This static method retrieves the Part Counter variable value.
      *
      * @return the current value of the Part Counter

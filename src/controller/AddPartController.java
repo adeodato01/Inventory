@@ -78,7 +78,29 @@ public class AddPartController implements Initializable {
     @FXML
     void onActionAddPart(ActionEvent event) throws IOException {
 
-        addPartWarning.setText("testing\ntesting\ntesting\ntesting\ntesting\ntesting\n");
+
+        StringBuilder test2 = new StringBuilder("test");
+
+        test2.append("   what");
+        test2.append("\n");
+        test2.append("who?");
+        test2.append("\n");
+        test2.append("where?");
+        test2.append("\n");
+
+        addPartWarning.setText(test2.toString());
+
+        System.out.println("Is test2 empty? " + test2.isEmpty());
+
+        test2.delete(0, test2.length());
+
+        System.out.println("Is test2 empty? " + test2.isEmpty());
+
+
+
+
+
+//        addPartWarning.setText("testing\ntesting\ntesting\ntesting\ntesting\ntesting\n");
 
 //        newPage.switchStage(event, "/view/MainMenu.fxml");
     }
