@@ -71,6 +71,11 @@ public class InventoryTestMain extends Application {
 
         Inventory.addPart(part1);
         Inventory.addPart(part2);
+        Inventory.addPart(part2);
+        Inventory.addPart(part2);
+        Inventory.addPart(part2);
+        Inventory.addPart(part2);
+        Inventory.addPart(part2);
 
         Product product1 = new Product(
                 InventoryTestMethod.increaseProductCounter(),

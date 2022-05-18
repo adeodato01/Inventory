@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.InHouse;
+import model.Inventory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -79,6 +81,7 @@ public class AddPartController implements Initializable {
     void onActionAddPart(ActionEvent event) throws IOException {
 
 
+
         StringBuilder test2 = new StringBuilder("test");
 
         test2.append("   what");
@@ -96,14 +99,25 @@ public class AddPartController implements Initializable {
 
         System.out.println("Is test2 empty? " + test2.isEmpty());
 
-
-
-
-
 //        addPartWarning.setText("testing\ntesting\ntesting\ntesting\ntesting\ntesting\n");
 
-//        newPage.switchStage(event, "/view/MainMenu.fxml");
+        if (inHouseRBtn.isSelected()) {
+            InHouse newPart = new InHouse(
+                    InventoryTestMethod.increasePartCounter(),
+                    nameField.getText(),
+                    Double.parseDouble(priceField.getText()),
+                    Integer.parseInt(inventoryField.getText()),
+                    Integer.parseInt(minField.getText()),
+                    Integer.parseInt(maxField.getText()),
+                    Integer.parseInt(machIdField.getText()));
+
+            Inventory.addPart(newPart);
+        }
+
+        //newPage.switchStage(event, "/view/MainMenu.fxml");
     }
+
+
 
     /** On Button Press, this method will cancel part creation and return the user to the Main Menu.
      * @// FIXME: 5/16/2022 Build me!
