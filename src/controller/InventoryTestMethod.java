@@ -207,11 +207,11 @@ public class InventoryTestMethod {
 
                 // Makes sure Min is less than Max
                 if (maxInput < minInput) {
-                    validationWarning.append("Maximum must be greater than or equal to Minimum.\n");
+                    validationWarning.append("Minimum must not be higher than Maximum.\n");
                 }
                 // Makes sure Inventory is inside the Min / Max range.
                 else if (invInput < minInput || invInput > maxInput) {
-                    validationWarning.append("Inventory must be between Minimum and Maximum.\n");
+                    validationWarning.append("Inventory is outside the Minimum and Maximum range.\n");
                 }
             } catch (NumberFormatException e) {
                 validationWarning.append("Maximum must be an integer.\n");

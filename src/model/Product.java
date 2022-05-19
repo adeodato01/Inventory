@@ -153,4 +153,11 @@ public class Product {
     public ObservableList<Part> getAllAssociatedParts() {
         return associatedParts;
     }
+
+    /** This method re-assigns the Product's Associated Parts list to a new list.
+     * @param partList an Observable List full of Parts
+     */
+    public void setPartList (ObservableList<Part> partList) {
+        this.associatedParts = partList;
+    }
 }
