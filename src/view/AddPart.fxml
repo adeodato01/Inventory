@@ -90,7 +90,7 @@
             <TextField fx:id="minField" GridPane.columnIndex="3" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <HBox alignment="TOP_RIGHT" layoutX="201.0" layoutY="372.0" prefHeight="38.0" prefWidth="234.0">
+      <HBox alignment="TOP_RIGHT" layoutX="221.0" layoutY="346.0" prefHeight="38.0" prefWidth="234.0">
          <children>
             <Button minWidth="54.0" mnemonicParsing="false" onAction="#onActionAddPart" text="Save">
                <HBox.margin>
@@ -100,6 +100,6 @@
             <Button minWidth="54.0" mnemonicParsing="false" onAction="#onActionCancelAdd" text="Cancel" />
          </children>
       </HBox>
-      <Label fx:id="addPartWarning" layoutX="62.0" layoutY="375.0" textFill="RED" />
+      <Label fx:id="addPartWarning" layoutX="62.0" layoutY="380.0" textFill="RED" />
    </children>
 </AnchorPane>

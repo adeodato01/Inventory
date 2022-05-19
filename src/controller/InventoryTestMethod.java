@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,34 +22,6 @@ public class InventoryTestMethod {
     private static int partCounter = 0;
     private static int productCounter = 1000;
 
-    private static int validationError = 0;
-
-    /** This method sets the Validation Error value.
-     *
-     * @param validationError an integer
-     */
-    public static void setValidationError(int validationError) {
-        InventoryTestMethod.validationError = validationError;
-    }
-
-
-    /** This is the Increase Part Error static method.
-     * This method increments the partError static variable.
-     * @return Returns an increased partError int.
-     */
-    public static int increaseValidationError() {
-        validationError++;
-        return validationError;
-    }
-
-
-    /** This method returns the value of Validation Error.
-     *
-     * @return an integer
-     */
-    public static int getValidationError() {
-        return validationError;
-    }
 
 
     /** This static method retrieves the Part Counter variable value.
@@ -111,6 +84,125 @@ public class InventoryTestMethod {
         scene = FXMLLoader.load(getClass().getResource(pageLocation));
         stage.setScene(new Scene(scene));
         stage.show();
+    }
+
+    private static StringBuilder validationWarning = new StringBuilder();
+
+    /** This method returns the Validation Warning StringBuilder to a String.
+     *
+     * @return the string of the Validation Warning
+     */
+    public static String getValidationWarning() {
+        return validationWarning.toString();
+    }
+
+    /** This method adds to the private Validation Warning StringBuilder.
+     *
+     * @param warning a String
+     */
+    public static void addValidationWarning(String warning) {
+        validationWarning.append(warning);
+    }
+
+    /** This method confirms if the Validation Warnings are empty.
+     *
+     * @return a boolean
+     */
+    public static boolean noWarnings() {
+        if (validationWarning.isEmpty()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /** This method checks the validity of inputs
+     *
+     * @param name
+     * @param inventory
+     * @param price
+     * @param min
+     * @param max
+     */
+    public static void inputValidator(
+            TextField name,
+            TextField inventory,
+            TextField price,
+            TextField min,
+            TextField max) {
+
+        int minInput = -1;
+        int maxInput = -1;
+        int invInput = -1;
+        double priceInput = -1.0;
+
+        validationWarning.delete(0, validationWarning.length());
+
+        if (name.getText() == null || name.getText().trim().isEmpty()) {
+            validationWarning.append("Name field cannot be blank.\n");
+        }
+
+        if (inventory.getText() == null || inventory.getText().trim().isEmpty()) {
+            validationWarning.append("Inventory field cannot be blank.\n");
+        }
+        else {
+            try {
+                // gotta add .trim() to parseInt parameters
+                invInput = Integer.parseInt(inventory.getText().trim());
+
+            } catch (NumberFormatException e) {
+                validationWarning.append("Inventory must be an integer.\n");
+            }
+        }
+
+        if (price.getText() == null || price.getText().trim().isEmpty()) {
+            validationWarning.append("Price field cannot be blank.\n");
+        }
+        else {
+            try {
+                priceInput = Double.parseDouble(price.getText());
+
+                if (priceInput < 0) {
+                    validationWarning.append("Price must not be negative.\n");
+                }
+
+            } catch (NumberFormatException e) {
+                validationWarning.append("Price must be a number.\n");
+            }
+        }
+
+        if (min.getText() == null || min.getText().trim().isEmpty()) {
+            validationWarning.append("Minimum field cannot be blank.\n");
+        }
+        else {
+            try {
+                minInput = Integer.parseInt(min.getText().trim());
+
+                if (minInput < 0) {
+                    validationWarning.append("Minimum field must be an integer of zero or larger.\n");
+                }
+            } catch (NumberFormatException e) {
+                validationWarning.append("Minimum must be an integer.\n");
+            }
+        }
+        if (max.getText() == null || max.getText().trim().isEmpty()) {
+            validationWarning.append("Maximum field cannot be blank.\n");
+        }
+        else {
+            try {
+                maxInput = Integer.parseInt(max.getText().trim());
+
+                if (maxInput < minInput) {
+                    validationWarning.append("Maximum must be greater than or equal to Minimum.\n");
+                }
+                else if (invInput < minInput || invInput > maxInput) {
+                    validationWarning.append("Inventory must be between Minimum and Maximum\n");
+                }
+            } catch (NumberFormatException e) {
+                validationWarning.append("Maximum must be an integer.\n");
+            }
+        }
     }
 
 }

@@ -98,41 +98,6 @@ public class InventoryTestMain extends Application {
         Inventory.addProduct(product1);
         Inventory.addProduct(product2);
 
-        if (InventoryTestMethod.getValidationError() == 0) {
-            System.out.println("Yup, it's zero");
-        }
-
-        System.out.println("The part error number is: " + InventoryTestMethod.getValidationError());
-
-        InventoryTestMethod.increaseValidationError();
-
-        System.out.println("The part error number is: " + InventoryTestMethod.getValidationError());
-
-        String test = "khkljh";
-
-        String what = "What?";
-
-/*
-        String test2 = test.concat(what);
-        test.concat("\n");
-        test.concat("who?");
-        test.concat("\n");
-        test.concat("where?");
-        test.concat("\n");
-*/
-
-        StringBuilder test2 = new StringBuilder(test);
-
-        test2.append(what);
-        test2.append("\n");
-        test2.append("who?");
-        test2.append("\n");
-        test2.append("where?");
-        test2.append("\n");
-
-        System.out.println("Is the test empty? " + test2.isEmpty());
-
-        System.out.println(test2);
 
         // This line launches the GUI. Any pre-setting can be coded before this line.
         launch(args);

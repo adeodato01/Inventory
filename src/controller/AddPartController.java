@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.InHouse;
 import model.Inventory;
+import model.Outsourced;
 
 import java.io.IOException;
 import java.net.URL;
@@ -73,54 +74,73 @@ public class AddPartController implements Initializable {
     }
 
     /** On Button Press, this method will verify input and save the Part to the allParts list and return the user to the Main Menu.
-     * @// FIXME: 5/16/2022 Build me!
      * @param event
      * @throws IOException
      */
     @FXML
     void onActionAddPart(ActionEvent event) throws IOException {
 
+        InventoryTestMethod.inputValidator(nameField, inventoryField, priceField, minField, maxField);
 
-
-        StringBuilder test2 = new StringBuilder("test");
-
-        test2.append("   what");
-        test2.append("\n");
-        test2.append("who?");
-        test2.append("\n");
-        test2.append("where?");
-        test2.append("\n");
-
-        addPartWarning.setText(test2.toString());
-
-        System.out.println("Is test2 empty? " + test2.isEmpty());
-
-        test2.delete(0, test2.length());
-
-        System.out.println("Is test2 empty? " + test2.isEmpty());
-
-//        addPartWarning.setText("testing\ntesting\ntesting\ntesting\ntesting\ntesting\n");
-
-        if (inHouseRBtn.isSelected()) {
-            InHouse newPart = new InHouse(
-                    InventoryTestMethod.increasePartCounter(),
-                    nameField.getText(),
-                    Double.parseDouble(priceField.getText()),
-                    Integer.parseInt(inventoryField.getText()),
-                    Integer.parseInt(minField.getText()),
-                    Integer.parseInt(maxField.getText()),
-                    Integer.parseInt(machIdField.getText()));
-
-            Inventory.addPart(newPart);
+        if (outsourcedRBtn.isSelected()) {
+            if (machIdField.getText() == null || machIdField.getText().trim().isEmpty()) {
+                InventoryTestMethod.addValidationWarning("Company Name field cannot be blank.\n");
+            }
         }
 
-        //newPage.switchStage(event, "/view/MainMenu.fxml");
+        if (inHouseRBtn.isSelected()) {
+            if (machIdField.getText() == null || machIdField.getText().trim().isEmpty()) {
+                InventoryTestMethod.addValidationWarning("Machine ID field cannot be blank.\n");
+            }
+            else {
+                try {
+                    Integer.parseInt(machIdField.getText().trim());
+
+                } catch (NumberFormatException e) {
+                    InventoryTestMethod.addValidationWarning("Machine ID must be an integer.\n");
+                }
+            }
+        }
+
+        addPartWarning.setText(InventoryTestMethod.getValidationWarning());
+
+        if (InventoryTestMethod.noWarnings()) {
+
+            if (outsourcedRBtn.isSelected()) {
+                Outsourced newPart = new Outsourced(
+                        InventoryTestMethod.increasePartCounter(),
+                        nameField.getText(),
+                        Double.parseDouble(priceField.getText()),
+                        Integer.parseInt(inventoryField.getText()),
+                        Integer.parseInt(minField.getText()),
+                        Integer.parseInt(maxField.getText()),
+                        machIdField.getText());
+
+                Inventory.addPart(newPart);
+            }
+
+            if (inHouseRBtn.isSelected()) {
+                InHouse newPart = new InHouse(
+                        InventoryTestMethod.increasePartCounter(),
+                        nameField.getText(),
+                        Double.parseDouble(priceField.getText()),
+                        Integer.parseInt(inventoryField.getText()),
+                        Integer.parseInt(minField.getText()),
+                        Integer.parseInt(maxField.getText()),
+                        Integer.parseInt(machIdField.getText()));
+
+                Inventory.addPart(newPart);
+            }
+
+            newPage.switchStage(event, "/view/MainMenu.fxml");
+
+        }
+
     }
 
 
 
     /** On Button Press, this method will cancel part creation and return the user to the Main Menu.
-     * @// FIXME: 5/16/2022 Build me!
      * @param event
      * @throws IOException
      */

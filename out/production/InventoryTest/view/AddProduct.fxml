@@ -80,17 +80,17 @@
       <TableView fx:id="availPartsTableView" layoutX="407.0" layoutY="97.0" prefHeight="191.0" prefWidth="431.0">
         <columns>
             <TableColumn fx:id="availPartIdCol" prefWidth="51.99993896484375" text="Part ID" />
-          <TableColumn fx:id="availPartNameCol" prefWidth="147.2000732421875" text="Part Name" />
+          <TableColumn fx:id="availPartNameCol" prefWidth="137.0" text="Part Name" />
           <TableColumn fx:id="availPartInventoryCol" prefWidth="103.99993896484375" text="Inventory Level" />
-            <TableColumn fx:id="availPartPriceCol" prefWidth="127.20001220703125" text="Price/Cost per Unit" />
+            <TableColumn fx:id="availPartPriceCol" prefWidth="122.0" text="Price/Cost per Unit" />
         </columns>
       </TableView>
       <TableView fx:id="productPartsTableView" layoutX="407.0" layoutY="343.0" prefHeight="191.0" prefWidth="431.0">
          <columns>
             <TableColumn fx:id="productPartIdCol" prefWidth="51.99993896484375" text="Part ID" />
-            <TableColumn fx:id="productPartNameCol" prefWidth="147.2000732421875" text="Part Name" />
+            <TableColumn fx:id="productPartNameCol" prefWidth="137.0" text="Part Name" />
             <TableColumn fx:id="productPartInventoryCol" prefWidth="103.99993896484375" text="Inventory Level" />
-            <TableColumn fx:id="productPartPriceCol" prefWidth="127.20001220703125" text="Price/Cost per Unit" />
+            <TableColumn fx:id="productPartPriceCol" prefWidth="122.0" text="Price/Cost per Unit" />
          </columns>
       </TableView>
       <Button layoutX="786.0" layoutY="591.0" minWidth="52.0" mnemonicParsing="false" onAction="#onActionCancelProductCreation" text="Cancel" />
