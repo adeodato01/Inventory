@@ -149,7 +149,6 @@ public class MainMenuController implements Initializable {
 
 
     /** This method displays the Main Menu.
-     *
      * @param url
      * @param resourceBundle
      */

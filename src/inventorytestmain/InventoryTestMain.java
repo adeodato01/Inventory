@@ -62,7 +62,7 @@ public class InventoryTestMain extends Application {
 
         InHouse part2 = new InHouse(
                 InventoryTestMethod.increasePartCounter(),
-                "Wheel",
+                "supercalifragilisticexpialidocious",
                 59.99,
                 12,
                 1,
@@ -70,6 +70,12 @@ public class InventoryTestMain extends Application {
                 24);
 
         Inventory.addPart(part1);
+        Inventory.addPart(part2);
+        Inventory.addPart(part2);
+        Inventory.addPart(part2);
+        Inventory.addPart(part2);
+        Inventory.addPart(part2);
+        Inventory.addPart(part2);
         Inventory.addPart(part2);
         Inventory.addPart(part2);
         Inventory.addPart(part2);

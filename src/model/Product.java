@@ -131,7 +131,6 @@ public class Product {
     }
 
     /** This method adds a Part to the Product's associated part list
-     *
      * @param part a part to be added to the associated part list
      */
     public void addAssociatedPart(Part part) {

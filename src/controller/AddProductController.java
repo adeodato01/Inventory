@@ -7,6 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.Inventory;
+import model.Part;
+import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,19 +24,19 @@ public class AddProductController implements Initializable {
     InventoryTestMethod newPage = new InventoryTestMethod();
 
     @FXML
-    private TableColumn<?, ?> availPartIdCol;
+    private TableColumn<Part, Integer> availPartIdCol;
 
     @FXML
-    private TableColumn<?, ?> availPartInventoryCol;
+    private TableColumn<Part, Integer> availPartInventoryCol;
 
     @FXML
-    private TableColumn<?, ?> availPartNameCol;
+    private TableColumn<Part, String> availPartNameCol;
 
     @FXML
-    private TableColumn<?, ?> availPartPriceCol;
+    private TableColumn<Part, Double> availPartPriceCol;
 
     @FXML
-    private TableView<?> availPartsTableView;
+    private TableView<Part> availPartsTableView;
 
     @FXML
     private TextField productIdTxt;
@@ -71,19 +75,17 @@ public class AddProductController implements Initializable {
     private Label addProductWarning;
 
     /** On Button Press, this method will add a part to the Product's Parts list.
-     * @// FIXME: 5/16/2022 Build me!
+     * @// FIXME: 5/16/2022 Still must include Adding Parts!
      * @param event the click event
      * @throws IOException
      */
     @FXML
     void onActionAddPart(ActionEvent event) throws IOException {
 
-        //This is just to test the warning label
-        addProductWarning.setText("testing\ntesting\ntesting\ntesting\ntesting\ntesting\n");
+
     }
 
     /** On Button Press, this method will cancel product creation and return the user to the Main Menu.
-     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      * @throws IOException
      */
@@ -104,14 +106,29 @@ public class AddProductController implements Initializable {
     }
 
     /** On Button Press, this method will verify input and save the Product to the allProducts list and return the user to the Main Menu.
-     * @// FIXME: 5/16/2022 Build me!
+     * @// FIXME: 5/16/2022 Still must add parts!!
      * @param event the click event
      * @throws IOException
      */
     @FXML
     void onActionSaveProduct(ActionEvent event) throws IOException {
 
-        newPage.switchStage(event, "/view/MainMenu.fxml");
+        InventoryTestMethod.inputValidator(productNameTxt, productInvTxt, productPriceTxt, productMinTxt, productMaxTxt);
+        addProductWarning.setText(InventoryTestMethod.getValidationWarning());
+
+        if (InventoryTestMethod.noWarnings()) {
+            Product newProduct = new Product(
+                    InventoryTestMethod.increaseProductCounter(),
+                    productNameTxt.getText(),
+                    Double.parseDouble(productPriceTxt.getText()),
+                    Integer.parseInt(productInvTxt.getText().trim()),
+                    Integer.parseInt(productMinTxt.getText().trim()),
+                    Integer.parseInt(productMaxTxt.getText().trim()));
+
+            Inventory.addProduct(newProduct);
+
+            newPage.switchStage(event, "/view/MainMenu.fxml");
+        }
 
     }
 
@@ -125,12 +142,18 @@ public class AddProductController implements Initializable {
     }
 
     /** This method displays the Add Product page.
-     *
+     * @// FIXME: 5/18/2022 deal with the added parts list
      * @param url
      * @param resourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        availPartsTableView.setItems(Inventory.getAllParts());
+        availPartIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        availPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        availPartInventoryCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        availPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
     }
 }

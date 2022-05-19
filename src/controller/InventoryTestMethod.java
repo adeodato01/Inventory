@@ -118,12 +118,18 @@ public class InventoryTestMethod {
     }
 
     /** This method checks the validity of inputs
+     * <p>
+     * <br>
+     * Testing and research meant that parseInt requires whitespace to be removed
+     * (as opposed to the parseDouble method). Discovered on 5/18/2022.
+     * <p>
+     * This was repaired by adding <b><code>".trim()"</code></b>  to the parameter of <b><code>parseInt()</code></b>
      *
-     * @param name
-     * @param inventory
-     * @param price
-     * @param min
-     * @param max
+     * @param name TextField from form
+     * @param inventory TextField from form
+     * @param price TextField from form
+     * @param min TextField from form
+     * @param max TextField from form
      */
     public static void inputValidator(
             TextField name,
@@ -139,10 +145,12 @@ public class InventoryTestMethod {
 
         validationWarning.delete(0, validationWarning.length());
 
+        // Validates Name field
         if (name.getText() == null || name.getText().trim().isEmpty()) {
             validationWarning.append("Name field cannot be blank.\n");
         }
 
+        // Validates Inventory field
         if (inventory.getText() == null || inventory.getText().trim().isEmpty()) {
             validationWarning.append("Inventory field cannot be blank.\n");
         }
@@ -156,6 +164,7 @@ public class InventoryTestMethod {
             }
         }
 
+        // Validates Price field
         if (price.getText() == null || price.getText().trim().isEmpty()) {
             validationWarning.append("Price field cannot be blank.\n");
         }
@@ -172,6 +181,7 @@ public class InventoryTestMethod {
             }
         }
 
+        // Validates Minimum field.
         if (min.getText() == null || min.getText().trim().isEmpty()) {
             validationWarning.append("Minimum field cannot be blank.\n");
         }
@@ -186,6 +196,8 @@ public class InventoryTestMethod {
                 validationWarning.append("Minimum must be an integer.\n");
             }
         }
+
+        // Validates Maximum field.
         if (max.getText() == null || max.getText().trim().isEmpty()) {
             validationWarning.append("Maximum field cannot be blank.\n");
         }
@@ -193,11 +205,13 @@ public class InventoryTestMethod {
             try {
                 maxInput = Integer.parseInt(max.getText().trim());
 
+                // Makes sure Min is less than Max
                 if (maxInput < minInput) {
                     validationWarning.append("Maximum must be greater than or equal to Minimum.\n");
                 }
+                // Makes sure Inventory is inside the Min / Max range.
                 else if (invInput < minInput || invInput > maxInput) {
-                    validationWarning.append("Inventory must be between Minimum and Maximum\n");
+                    validationWarning.append("Inventory must be between Minimum and Maximum.\n");
                 }
             } catch (NumberFormatException e) {
                 validationWarning.append("Maximum must be an integer.\n");
