@@ -119,11 +119,10 @@ public class AddProductController implements Initializable {
      */
     @FXML
     void onActionAddPart(ActionEvent event) {
-        System.out.println("I hit the Add Part button");
 
-        System.out.println("The Index of the item is: " + availPartsTableView.getSelectionModel().getSelectedIndex());
-
-        addSelectedPart(availPartsTableView.getSelectionModel().getSelectedItem());
+        if(availPartsTableView.getSelectionModel().getSelectedItem() != null) {
+            addSelectedPart(availPartsTableView.getSelectionModel().getSelectedItem());
+        }
     }
 
     /** On Button Press, this method will cancel product creation and return the user to the Main Menu.
