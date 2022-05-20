@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Inventory;
@@ -55,23 +52,48 @@ public class MainMenuController implements Initializable {
     }
 
     /** On Button Press, this method will delete the selected part from the Parts table
-     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
     void onActionDeletePart(ActionEvent event) {
         System.out.println("Delete Selected Part");
+        try {
+            String partName = partTableView.getSelectionModel().getSelectedItem().getName();
+            System.out.println(partName);
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Part");
+            alert.setContentText("Are you sure you want to delete the " + partName + " part?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                Inventory.deletePart(partTableView.getSelectionModel().getSelectedItem());
+            }
+        } catch (NullPointerException ignored){ }
     }
 
+
     /** On Button Press, this method will delete the selected product from the Products table
-     * @// FIXME: 5/16/2022 Build me!
-     * @param event
+     * @param event the click event
      */
     @FXML
     void onActionDeleteProduct(ActionEvent event) {
         System.out.println("Delete Selected Product");
 
-        deleteProductWarning.setText("Cannot delete. Product has associated parts.");
+        try {
+            if (productTableView.getSelectionModel().getSelectedItem().getAllAssociatedParts().isEmpty()) {
+                String productName = productTableView.getSelectionModel().getSelectedItem().getName();
+                System.out.println(productName);
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Delete Product");
+                alert.setContentText("Are you sure you want to delete the " + productName + " product?");
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    Inventory.deleteProduct(productTableView.getSelectionModel().getSelectedItem());
+                }
+            }
+            else {
+                deleteProductWarning.setText("Cannot delete. Product has associated parts.");
+            }
+        } catch (NullPointerException ignored){ }
     }
 
     /** On Button Press, this method will close the app window.

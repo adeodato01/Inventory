@@ -29,7 +29,7 @@ public class InventoryTestMain extends Application {
         stage.setScene(new Scene(root, 1124, 418));
         stage.show();
 
-        // lines 33 - 43 create a pop-up window to confirm force closing the app
+        // Creates a pop-up window to confirm force closing the app
         stage.setOnCloseRequest(event -> {
             event.consume();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

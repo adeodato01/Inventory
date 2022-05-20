@@ -100,21 +100,31 @@ public class Inventory {
     }
 
     /** This method removes a Part from the allParts list.
-     * @// FIXME: 5/15/2022 Make me!
      * @param selectedPart a part selected from the GUI
      * @return a boolean; Was the part removed? True or False
      */
     public static boolean deletePart(Part selectedPart) {
-        return true;
+        int id = selectedPart.getId();
+        for (Part part : allParts) {
+            if (part.getId() == id) {
+                return allParts.remove(part);
+            }
+        }
+        return false;
     }
 
     /** This method removes a Product from the allProducts list.
-     * @// FIXME: 5/15/2022 Make me!
      * @param selectedProduct a product selected from the GUI
      * @return a boolean; Was the product removed? True or False
      */
     public static boolean deleteProduct(Product selectedProduct) {
-        return true;
+        int id = selectedProduct.getId();
+        for (Product product : allProducts) {
+            if (product.getId() == id) {
+                return allProducts.remove(product);
+            }
+        }
+        return false;
     }
 
 
