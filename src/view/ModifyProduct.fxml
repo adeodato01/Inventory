@@ -62,14 +62,14 @@
          </children>
       </VBox>
       <Pane layoutX="518.0" layoutY="210.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextField fx:id="productNameTxt" layoutX="118.0" layoutY="245.0" minWidth="40.0" prefHeight="26.0" prefWidth="158.0" />
       <TextField fx:id="productIdTxt" disable="true" editable="false" layoutX="118.0" layoutY="202.0" minWidth="40.0" prefHeight="26.0" prefWidth="158.0">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="productPriceTxt" layoutX="118.0" layoutY="327.0" minWidth="40.0" prefHeight="26.0" prefWidth="83.0" />
+      <TextField fx:id="productNameTxt" layoutX="118.0" layoutY="245.0" minWidth="40.0" prefHeight="26.0" prefWidth="158.0" />
       <TextField fx:id="productInvTxt" layoutX="118.0" layoutY="286.0" minWidth="40.0" prefHeight="26.0" prefWidth="83.0" />
+      <TextField fx:id="productPriceTxt" layoutX="118.0" layoutY="327.0" minWidth="40.0" prefHeight="26.0" prefWidth="83.0" />
       <TextField fx:id="productMaxTxt" layoutX="118.0" layoutY="371.0" minWidth="40.0" prefHeight="26.0" prefWidth="83.0" />
       <TextField fx:id="productMinTxt" layoutX="261.0" layoutY="371.0" minWidth="40.0" prefHeight="26.0" prefWidth="83.0" />
       <Label layoutX="233.0" layoutY="376.0" text="Min">
@@ -108,6 +108,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="addProductWarning" layoutX="115.0" layoutY="422.0" textFill="RED" />
+      <Label fx:id="addProductWarning" layoutX="105.0" layoutY="422.0" textFill="RED" />
    </children>
 </AnchorPane>

@@ -107,6 +107,8 @@ public class AddProductController implements Initializable {
     }
 
     /** This method removes a part from the Select Part list using its Index position in the list.
+     * This allows the Select Part list to stay in order, instead of just the "first instance" of the
+     * selected part getting deleted.
      * @param index desired index position
      */
     public void removeSelectedPartIndex(int index) {
@@ -160,7 +162,8 @@ public class AddProductController implements Initializable {
         } catch (IndexOutOfBoundsException ignored){ }
     }
 
-    /** On Button Press, this method will verify input and save the Product to the allProducts list and return the user to the Main Menu.
+    /** On Button Press, this method will verify input and save the Product to
+     * the allProducts list and return the user to the Main Menu.
      * @param event the click event
      * @throws IOException
      */

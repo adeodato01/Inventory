@@ -213,7 +213,6 @@ public class ModifyProductController implements Initializable {
 
             newPage.switchStage(event, "/view/MainMenu.fxml");
         }
-
     }
 
     /** After hitting "Enter" key in the search field, this method will search and display parts.

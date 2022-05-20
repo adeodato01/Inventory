@@ -138,7 +138,6 @@ public class Product {
     }
 
     /** This method removes a Part from the Product's associated part list
-     * @// FIXME: 5/15/2022 Create the logic to delete a part.
      * @param selectedAssociatedPart a part selected from the GUI
      * @return a boolean; Was the part removed? True or False
      */
@@ -156,7 +155,7 @@ public class Product {
     /** This is the Set Part List method.
      * This method re-assigns the Product's Associated Parts list to a new list.
      * This is a new addition to the provided UML.
-     * @param partList an Observable List full of Parts
+     * @param partList an Observable List of Parts
      */
     public void setPartList (ObservableList<Part> partList) {
         this.associatedParts = partList;

@@ -25,7 +25,6 @@ public class InventoryTestMethod {
 
 
     /** This static method retrieves the Part Counter variable value.
-     *
      * @return the current value of the Part Counter
      */
     public static int getPartCounter() {
@@ -42,7 +41,6 @@ public class InventoryTestMethod {
     }
 
     /** This static method retrieves the Product Counter variable value.
-     *
      * @return the current value of the Product Counter
      */
     public static int getProductCounter() {
@@ -89,7 +87,6 @@ public class InventoryTestMethod {
     private static StringBuilder validationWarning = new StringBuilder();
 
     /** This method returns the Validation Warning StringBuilder to a String.
-     *
      * @return the string of the Validation Warning
      */
     public static String getValidationWarning() {
@@ -97,7 +94,6 @@ public class InventoryTestMethod {
     }
 
     /** This method adds to the private Validation Warning StringBuilder.
-     *
      * @param warning a String
      */
     public static void addValidationWarning(String warning) {
@@ -105,7 +101,6 @@ public class InventoryTestMethod {
     }
 
     /** This method confirms if the Validation Warnings are empty.
-     *
      * @return a boolean
      */
     public static boolean noWarnings() {

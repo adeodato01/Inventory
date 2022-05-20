@@ -19,7 +19,6 @@ import model.Product;
 public class InventoryTestMain extends Application {
 
     /** This is the start method. It sets the Stage so the Main Menu scene can be displayed on it.
-     *
      * @param stage
      * @throws Exception
      */
@@ -44,7 +43,6 @@ public class InventoryTestMain extends Application {
     }
 
     /** This is the Main method. This method launches the Inventory app.
-     *
      * @param args
      */
     public static void main(String [] args) {

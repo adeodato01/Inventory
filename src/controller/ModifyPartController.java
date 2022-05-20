@@ -162,13 +162,9 @@ public class ModifyPartController implements Initializable {
 
                 Inventory.updatePart(partIndex, newPart);
             }
-
             newPage.switchStage(event, "/view/MainMenu.fxml");
-
         }
-
     }
-
 
 
     /** On Button Press, this method will cancel part creation and return the user to the Main Menu.
