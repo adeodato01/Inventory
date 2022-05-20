@@ -33,7 +33,6 @@ public class MainMenuController implements Initializable {
     private Label deleteProductWarning;
 
     /** On Button Press, this method takes the user to the Add Part page.
-     *
      * @param event the click event
      * @throws IOException
      */
@@ -45,7 +44,6 @@ public class MainMenuController implements Initializable {
     }
 
     /** On Button Press, this method take the user to the Add Product page.
-     *
      * @param event the click event
      * @throws IOException
      */
@@ -88,16 +86,30 @@ public class MainMenuController implements Initializable {
     }
 
     /** On Button Press, this method will take the user to the Modify Part page.
-     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
-    void onActionModifyPart(ActionEvent event) {
+    void onActionModifyPart(ActionEvent event) throws IOException {
         System.out.println("Modify Part");
+
+        try {
+
+            FXMLLoader ModPartLoader = new FXMLLoader();
+            ModPartLoader.setLocation(getClass().getResource("/view/ModifyPart.fxml"));
+            ModPartLoader.load();
+            ModifyPartController MPL = ModPartLoader.getController();
+            MPL.sendPart(
+                    partTableView.getSelectionModel().getSelectedItem(),
+                    partTableView.getSelectionModel().getSelectedIndex());
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            Parent scene = ModPartLoader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+
+        } catch (NullPointerException ignored) { }
     }
 
     /** On Button Press, this method will take the user to the Modify Product page.
-     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
@@ -106,15 +118,15 @@ public class MainMenuController implements Initializable {
 
         try {
 
-            FXMLLoader MPClLoader = new FXMLLoader();
-            MPClLoader.setLocation(getClass().getResource("/view/ModifyProduct.fxml"));
-            MPClLoader.load();
-            ModifyProductController MPC = MPClLoader.getController();
+            FXMLLoader MPCLoader = new FXMLLoader();
+            MPCLoader.setLocation(getClass().getResource("/view/ModifyProduct.fxml"));
+            MPCLoader.load();
+            ModifyProductController MPC = MPCLoader.getController();
             MPC.sendProduct(
                     productTableView.getSelectionModel().getSelectedItem(),
                     productTableView.getSelectionModel().getSelectedIndex());
             stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-            Parent scene = MPClLoader.getRoot();
+            Parent scene = MPCLoader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
 

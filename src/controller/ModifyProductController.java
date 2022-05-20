@@ -202,7 +202,7 @@ public class ModifyProductController implements Initializable {
             Product newProduct = new Product(
                     // replace the Increase Counter line
                     Integer.parseInt(productIdTxt.getText()),
-                    productNameTxt.getText(),
+                    productNameTxt.getText().trim(),
                     Double.parseDouble(productPriceTxt.getText()),
                     Integer.parseInt(productInvTxt.getText().trim()),
                     Integer.parseInt(productMinTxt.getText().trim()),
@@ -227,8 +227,7 @@ public class ModifyProductController implements Initializable {
 
     }
 
-    /** This method displays the Add Product page.
-     * @// FIXME: 5/18/2022 deal with the added parts list
+    /** This method displays the Modify Product page.
      * @param url
      * @param resourceBundle
      */

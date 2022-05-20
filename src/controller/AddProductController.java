@@ -138,8 +138,8 @@ public class AddProductController implements Initializable {
     }
 
     /** On Button Press, this method will remove a part to the Product's Parts list.
-     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
+     * @see #removeSelectedPartIndex(int)
      */
     @FXML
     void onActionRemovePart(ActionEvent event) {
@@ -174,7 +174,7 @@ public class AddProductController implements Initializable {
         if (InventoryTestMethod.noWarnings()) {
             Product newProduct = new Product(
                     InventoryTestMethod.increaseProductCounter(),
-                    productNameTxt.getText(),
+                    productNameTxt.getText().trim(),
                     Double.parseDouble(productPriceTxt.getText()),
                     Integer.parseInt(productInvTxt.getText().trim()),
                     Integer.parseInt(productMinTxt.getText().trim()),
@@ -200,7 +200,6 @@ public class AddProductController implements Initializable {
     }
 
     /** This method displays the Add Product page.
-     * @// FIXME: 5/18/2022 deal with the added parts list
      * @param url
      * @param resourceBundle
      */

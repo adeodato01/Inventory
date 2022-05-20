@@ -3,21 +3,27 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import model.InHouse;
 import model.Inventory;
 import model.Outsourced;
+import model.Part;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/** This class represents the Add Part controller.
+/** This class represents the Modify Part controller.
  *
  */
-public class AddPartController implements Initializable {
+public class ModifyPartController implements Initializable {
 
     InventoryTestMethod newPage = new InventoryTestMethod();
+
+    private int partIndex = -1;
 
     @FXML
     private TextField idField;
@@ -54,6 +60,33 @@ public class AddPartController implements Initializable {
 
     @FXML
     private Label addPartWarning;
+
+    /** This is the Send Part method.
+     * It takes the selected Part from the Main Menu to display on the Modify Part page.
+     * @param part the selected part
+     * @param index the part's index in the allParts list.
+     */
+    public void sendPart(Part part, int index) {
+        partIndex = index;
+
+        if (part instanceof InHouse) {
+            inHouseRBtn.setSelected(true);
+            machIdField.setText(String.valueOf(((InHouse) part).getMachineId()));
+            machineIdOrCompanyName.setText("Machine ID");
+        }
+        if (part instanceof Outsourced) {
+            outsourcedRBtn.setSelected(true);
+            machIdField.setText(String.valueOf(((Outsourced) part).getCompanyName()));
+            machineIdOrCompanyName.setText("Company Name");
+        }
+
+        idField.setText(String.valueOf(part.getId()));
+        nameField.setText(String.valueOf(part.getName()));
+        inventoryField.setText(String.valueOf(part.getStock()));
+        priceField.setText(String.valueOf(part.getPrice()));
+        minField.setText(String.valueOf(part.getMin()));
+        maxField.setText(String.valueOf(part.getMax()));
+    }
 
     /** On Radio Button press, this method changes the text field label to "Machine ID."
      * @param event the click event
@@ -106,7 +139,7 @@ public class AddPartController implements Initializable {
 
             if (outsourcedRBtn.isSelected()) {
                 Outsourced newPart = new Outsourced(
-                        InventoryTestMethod.increasePartCounter(),
+                        Integer.parseInt(idField.getText()),
                         nameField.getText().trim(),
                         Double.parseDouble(priceField.getText()),
                         Integer.parseInt(inventoryField.getText().trim()),
@@ -114,12 +147,12 @@ public class AddPartController implements Initializable {
                         Integer.parseInt(maxField.getText().trim()),
                         machIdField.getText().trim());
 
-                Inventory.addPart(newPart);
+                Inventory.updatePart(partIndex, newPart);
             }
 
             if (inHouseRBtn.isSelected()) {
                 InHouse newPart = new InHouse(
-                        InventoryTestMethod.increasePartCounter(),
+                        Integer.parseInt(idField.getText()),
                         nameField.getText().trim(),
                         Double.parseDouble(priceField.getText()),
                         Integer.parseInt(inventoryField.getText().trim()),
@@ -127,7 +160,7 @@ public class AddPartController implements Initializable {
                         Integer.parseInt(maxField.getText().trim()),
                         Integer.parseInt(machIdField.getText().trim()));
 
-                Inventory.addPart(newPart);
+                Inventory.updatePart(partIndex, newPart);
             }
 
             newPage.switchStage(event, "/view/MainMenu.fxml");
@@ -148,7 +181,7 @@ public class AddPartController implements Initializable {
         newPage.switchStage(event, "/view/MainMenu.fxml");
     }
 
-    /** This method displays the Add Part page.
+    /** This method displays the Modify Part page.
      * @param url
      * @param resourceBundle
      */
