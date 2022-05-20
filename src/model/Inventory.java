@@ -19,7 +19,6 @@ public class Inventory {
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
     /** This static method adds a part to the allParts list.
-     *
      * @param newPart a Part
      */
     public static void addPart(Part newPart) {
@@ -27,7 +26,6 @@ public class Inventory {
     }
 
     /** This static method adds a product to the allProducts list.
-     *
      * @param newProduct a Product
      */
     public static void addProduct(Product newProduct) {
@@ -84,21 +82,21 @@ public class Inventory {
 */
 
     /** This method updates an existing part in the allParts list with new information.
-     * @// FIXME: 5/15/2022 Make me!
      * @param index the index position of the part in the allParts list
      * @param selectedPart the Part object that'll be updated
      */
     public static void updatePart(int index, Part selectedPart) {
-
+        allParts.remove(index);
+        allParts.add(index, selectedPart);
     }
 
     /** This method updates an existing part in the allProducts list with new information.
-     * @// FIXME: 5/15/2022 Make me!
      * @param index the index position of the product in the allProducts list
      * @param newProduct the new Product information
      */
     public static void updateProduct(int index, Product newProduct) {
-
+        allProducts.remove(index);
+        allProducts.add(index, newProduct);
     }
 
     /** This method removes a Part from the allParts list.
@@ -121,7 +119,6 @@ public class Inventory {
 
 
     /** This is the allParts getter
-     *
      * @return the allParts list
      */
     public static ObservableList<Part> getAllParts() {
@@ -129,7 +126,6 @@ public class Inventory {
     }
 
     /** This is the allProducts getter
-     *
      * @return the allProducts list
      */
     public static ObservableList<Product> getAllProducts() {

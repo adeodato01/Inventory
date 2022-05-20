@@ -12,10 +12,10 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="657.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddProductController">
+<AnchorPane prefHeight="657.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyProductController">
    <children>
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffffff00" height="604.0" layoutX="24.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="847.0" />
-      <Label layoutX="61.0" layoutY="66.0" text="Add Product">
+      <Label layoutX="61.0" layoutY="66.0" text="Modify Product">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -63,7 +63,7 @@
       </VBox>
       <Pane layoutX="518.0" layoutY="210.0" prefHeight="200.0" prefWidth="200.0" />
       <TextField fx:id="productNameTxt" layoutX="118.0" layoutY="245.0" minWidth="40.0" prefHeight="26.0" prefWidth="158.0" />
-      <TextField fx:id="productIdTxt" disable="true" editable="false" layoutX="118.0" layoutY="202.0" minWidth="40.0" prefHeight="26.0" prefWidth="158.0" text="Auto Gen - Disabled">
+      <TextField fx:id="productIdTxt" disable="true" editable="false" layoutX="118.0" layoutY="202.0" minWidth="40.0" prefHeight="26.0" prefWidth="158.0">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>

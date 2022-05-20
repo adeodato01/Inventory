@@ -2,11 +2,16 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.Inventory;
 import model.Part;
 import model.Product;
@@ -19,6 +24,8 @@ import java.util.ResourceBundle;
  *
  */
 public class MainMenuController implements Initializable {
+
+    Stage stage;
 
     InventoryTestMethod newPage = new InventoryTestMethod();
 
@@ -70,7 +77,6 @@ public class MainMenuController implements Initializable {
     }
 
     /** On Button Press, this method will close the app window.
-     *
      * @param event the click event
      * @throws IOException
      */
@@ -95,8 +101,24 @@ public class MainMenuController implements Initializable {
      * @param event the click event
      */
     @FXML
-    void onActionModifyProduct(ActionEvent event) {
+    void onActionModifyProduct(ActionEvent event) throws IOException {
         System.out.println("Modify Product");
+
+        try {
+
+            FXMLLoader MPClLoader = new FXMLLoader();
+            MPClLoader.setLocation(getClass().getResource("/view/ModifyProduct.fxml"));
+            MPClLoader.load();
+            ModifyProductController MPC = MPClLoader.getController();
+            MPC.sendProduct(
+                    productTableView.getSelectionModel().getSelectedItem(),
+                    productTableView.getSelectionModel().getSelectedIndex());
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            Parent scene = MPClLoader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+
+        } catch (NullPointerException ignored) { }
     }
 
     /** After hitting "Enter" key in the search field, this method will search and display parts.

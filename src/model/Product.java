@@ -147,14 +147,15 @@ public class Product {
     }
 
     /** This method returns a list of all the associated parts.
-     *
      * @return an ObservableList of parts
      */
     public ObservableList<Part> getAllAssociatedParts() {
         return associatedParts;
     }
 
-    /** This method re-assigns the Product's Associated Parts list to a new list.
+    /** This is the Set Part List method.
+     * This method re-assigns the Product's Associated Parts list to a new list.
+     * This is a new addition to the provided UML.
      * @param partList an Observable List full of Parts
      */
     public void setPartList (ObservableList<Part> partList) {

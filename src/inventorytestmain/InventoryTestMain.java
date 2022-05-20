@@ -51,7 +51,7 @@ public class InventoryTestMain extends Application {
 
         System.out.println("before launch");
 
-        Outsourced part1 = new Outsourced(
+        Outsourced seat = new Outsourced(
                 InventoryTestMethod.increasePartCounter(),
                 "Seat",
                 29.99,
@@ -60,28 +60,39 @@ public class InventoryTestMain extends Application {
                 10,
                 "WinCo");
 
-        InHouse part2 = new InHouse(
+        InHouse gears = new InHouse(
                 InventoryTestMethod.increasePartCounter(),
-                "supercalifragilisticexpialidocious",
+                "Gear Box",
                 59.99,
                 12,
                 1,
                 90,
                 24);
 
-        Inventory.addPart(part1);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
-        Inventory.addPart(part2);
+        Outsourced wheel = new Outsourced(
+                InventoryTestMethod.increasePartCounter(),
+                "Wheel",
+                49.05,
+                10,
+                1,
+                20,
+                "Goodyear");
+
+        InHouse brakes = new InHouse(
+                InventoryTestMethod.increasePartCounter(),
+                "Brakes",
+                70.07,
+                24,
+                1,
+                30,
+                435);
+
+        Inventory.addPart(seat);
+        Inventory.addPart(gears);
+        Inventory.addPart(wheel);
+        Inventory.addPart(brakes);
+
+
 
         Product product1 = new Product(
                 InventoryTestMethod.increaseProductCounter(),
@@ -90,7 +101,12 @@ public class InventoryTestMain extends Application {
                 5,
                 1,
                 20);
-        product1.addAssociatedPart(part1);
+        product1.addAssociatedPart(seat);
+        product1.addAssociatedPart(wheel);
+        product1.addAssociatedPart(wheel);
+        product1.addAssociatedPart(brakes);
+        product1.addAssociatedPart(wheel);
+        product1.addAssociatedPart(wheel);
 
         Product product2 = new Product(
                 InventoryTestMethod.increaseProductCounter(),
@@ -99,7 +115,9 @@ public class InventoryTestMain extends Application {
                 4,
                 1,
                 25);
-        product2.addAssociatedPart(part2);
+        product2.addAssociatedPart(wheel);
+        product2.addAssociatedPart(wheel);
+        product2.addAssociatedPart(seat);
 
         Inventory.addProduct(product1);
         Inventory.addProduct(product2);

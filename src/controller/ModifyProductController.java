@@ -18,10 +18,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/** This class represents the Add Product controller.
+/** This class represents the Modify Product controller.
  *
  */
-public class AddProductController implements Initializable {
+public class ModifyProductController implements Initializable {
 
     InventoryTestMethod newPage = new InventoryTestMethod();
 
@@ -78,6 +78,31 @@ public class AddProductController implements Initializable {
 
     private ObservableList<Part> selectedParts = FXCollections.observableArrayList();
 
+    private int productIndex = -1;
+
+    /** This is the Send Product method.
+     * This will transfer both the Selected Product from the Main Menu and its Index to the Modify Product page.
+     * @param product the Product object selected from the main Menu
+     * @param index the index of the original Product in the Main Menu
+     */
+    public void sendProduct(Product product, int index) {
+        productIndex = index;
+        productIdTxt.setText(String.valueOf(product.getId()));
+        productNameTxt.setText(String.valueOf(product.getName()));
+        productInvTxt.setText(String.valueOf(product.getStock()));
+        productPriceTxt.setText(String.valueOf(product.getPrice()));
+        productMinTxt.setText(String.valueOf(product.getMin()));
+        productMaxTxt.setText(String.valueOf(product.getMax()));
+
+        selectedParts.addAll(product.getAllAssociatedParts());
+/*
+        // this for loop was replaced by the ".addAll" method.
+        for (Part part : product.getAllAssociatedParts()) {
+            selectedParts.add(part);
+        }
+*/
+    }
+
 
     /** This method adds a selected part to the Product Parts Table View
      * @param newPart the selected part
@@ -116,6 +141,7 @@ public class AddProductController implements Initializable {
 
     /** On Button Press, this method will add a part to the Selected Parts list.
      * @param event the click event
+     * @throws IOException
      */
     @FXML
     void onActionAddPart(ActionEvent event) {
@@ -138,8 +164,8 @@ public class AddProductController implements Initializable {
     }
 
     /** On Button Press, this method will remove a part to the Product's Parts list.
-     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
+     * @see #removeSelectedPartIndex(int)
      */
     @FXML
     void onActionRemovePart(ActionEvent event) {
@@ -162,6 +188,7 @@ public class AddProductController implements Initializable {
     }
 
     /** On Button Press, this method will verify input and save the Product to the allProducts list and return the user to the Main Menu.
+     * This actually replaces the chosen Product with a new Product object.
      * @param event the click event
      * @throws IOException
      */
@@ -173,7 +200,8 @@ public class AddProductController implements Initializable {
 
         if (InventoryTestMethod.noWarnings()) {
             Product newProduct = new Product(
-                    InventoryTestMethod.increaseProductCounter(),
+                    // replace the Increase Counter line
+                    Integer.parseInt(productIdTxt.getText()),
                     productNameTxt.getText(),
                     Double.parseDouble(productPriceTxt.getText()),
                     Integer.parseInt(productInvTxt.getText().trim()),
@@ -183,7 +211,7 @@ public class AddProductController implements Initializable {
             //Add code to add parts to the parts list
             newProduct.setPartList(selectedParts);
 
-            Inventory.addProduct(newProduct);
+            Inventory.updateProduct(productIndex, newProduct);
 
             newPage.switchStage(event, "/view/MainMenu.fxml");
         }
