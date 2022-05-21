@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,7 +69,15 @@ public class MainMenuController implements Initializable {
             if (alert.showAndWait().get() == ButtonType.OK) {
                 Inventory.deletePart(partTableView.getSelectionModel().getSelectedItem());
             }
-        } catch (NullPointerException ignored){ }
+        } catch (NullPointerException ignored){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Delete Part");
+            alert.setContentText("Please select a Part to delete.");
+            alert.show();
+        }
+
+        partTableView.setItems(Inventory.getAllParts());
+        partSearch.clear();
     }
 
 
@@ -93,7 +103,15 @@ public class MainMenuController implements Initializable {
             else {
                 deleteProductWarning.setText("Cannot delete. Product has associated parts.");
             }
-        } catch (NullPointerException ignored){ }
+        } catch (NullPointerException ignored){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Delete Product");
+            alert.setContentText("Please select a Product to delete.");
+            alert.show();
+        }
+
+        productTableView.setItems(Inventory.getAllProducts());
+        productSearch.clear();
     }
 
     /** On Button Press, this method will close the app window.
@@ -128,7 +146,12 @@ public class MainMenuController implements Initializable {
             stage.setScene(new Scene(scene));
             stage.show();
 
-        } catch (NullPointerException ignored) { }
+        } catch (NullPointerException ignored) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Modify Part");
+            alert.setContentText("Please select a Part to modify.");
+            alert.show();
+        }
     }
 
     /** On Button Press, this method will take the user to the Modify Product page.
@@ -152,26 +175,111 @@ public class MainMenuController implements Initializable {
             stage.setScene(new Scene(scene));
             stage.show();
 
-        } catch (NullPointerException ignored) { }
+        } catch (NullPointerException ignored) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Modify Product");
+            alert.setContentText("Please select a Product to modify.");
+            alert.show();
+        }
     }
 
     /** After hitting "Enter" key in the search field, this method will search and display parts.
-     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
     void onActionSearchParts(ActionEvent event) {
-        System.out.println("Searching Parts");
+
+        ObservableList<Part> searchedParts = FXCollections.observableArrayList();
+
+        try {
+            int tryId = Integer.parseInt(partSearch.getText().strip());
+            if (Inventory.lookupPart(tryId) == null) {
+                partTableView.setItems(Inventory.getAllParts());
+                System.out.println("Didn't find with an INT");
+                partSearch.clear();
+                partTableView.getSelectionModel().selectFirst();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Failed Search");
+                alert.setContentText("Part ID number not found.");
+                alert.show();
+                return;
+            }
+            else {
+                searchedParts.add(Inventory.lookupPart(tryId));
+                partTableView.setItems(searchedParts);
+            }
+        }  catch (NumberFormatException ignored) { }
+
+        if (searchedParts.isEmpty()) {
+            String tryName = partSearch.getText();
+            if (Inventory.lookupPart(tryName) != null) {
+                searchedParts.addAll(Inventory.lookupPart(tryName));
+                partTableView.setItems(searchedParts);
+            }
+            else {
+                partTableView.setItems(Inventory.getAllParts());
+                System.out.println("Failed with a STRING");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Failed Search");
+                alert.setContentText("Matching part not found.");
+                alert.show();
+            }
+        }
+        partSearch.clear();
+        partTableView.getSelectionModel().selectFirst();
     }
 
     /** After hitting "Enter" key in the search field, this method will search and display products.
-     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
     void onActionSearchProducts(ActionEvent event) {
-        System.out.println("Searching Products");
+
+        ObservableList<Product> searchedProducts = FXCollections.observableArrayList();
+
+        try {
+            int tryId = Integer.parseInt(productSearch.getText().strip());
+            if (Inventory.lookupProduct(tryId) == null) {
+                productTableView.setItems(Inventory.getAllProducts());
+                System.out.println("Didn't find with an INT");
+                productSearch.clear();
+                productTableView.getSelectionModel().selectFirst();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Failed Search");
+                alert.setContentText("Product ID number not found.");
+                alert.show();
+                return;
+            }
+            else {
+                searchedProducts.add(Inventory.lookupProduct(tryId));
+                productTableView.setItems(searchedProducts);
+            }
+        }  catch (NumberFormatException ignored) { }
+
+        if (searchedProducts.isEmpty()) {
+            String tryName = productSearch.getText();
+            if (Inventory.lookupProduct(tryName) != null) {
+                searchedProducts.addAll(Inventory.lookupProduct(tryName));
+                productTableView.setItems(searchedProducts);
+            }
+            else {
+                productTableView.setItems(Inventory.getAllProducts());
+                System.out.println("Failed with a STRING");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Failed Search");
+                alert.setContentText("Matching product name not found.");
+                alert.show();
+            }
+        }
+        productSearch.clear();
+        productTableView.getSelectionModel().selectFirst();
     }
+
+    @FXML
+    private TextField partSearch;
+
+    @FXML
+    private TextField productSearch;
 
     @FXML
     private TableColumn<Part, Integer> partIdCol;

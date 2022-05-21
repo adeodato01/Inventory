@@ -17,6 +17,7 @@
          </font>
       </Label>
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffffff00" height="298.0" layoutX="24.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="518.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffffff00" height="298.0" layoutX="579.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="518.0" />
       <TableView fx:id="partTableView" layoutX="48.0" layoutY="104.0" prefHeight="190.0" prefWidth="470.0">
         <columns>
           <TableColumn fx:id="partIdCol" prefWidth="75.0" text="Part ID" />
@@ -25,16 +26,6 @@
             <TableColumn fx:id="partPriceCol" prefWidth="126.39999389648438" text="Price/Cost per Unit" />
         </columns>
       </TableView>
-      <TextField layoutX="324.0" layoutY="71.0" onAction="#onActionSearchParts" prefHeight="26.0" prefWidth="193.0" promptText="Search by Part ID or Name" />
-      <Label layoutX="48.0" layoutY="74.0" text="Parts">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Button layoutX="380.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionModifyPart" text="Modify" />
-      <Button layoutX="463.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionDeletePart" text="Delete" />
-      <Button layoutX="317.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionAddPart" text="Add" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffffff00" height="298.0" layoutX="579.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="518.0" />
       <TableView fx:id="productTableView" layoutX="603.0" layoutY="104.0" prefHeight="190.0" prefWidth="470.0">
          <columns>
             <TableColumn fx:id="productIdCol" prefWidth="75.0" text="Product ID" />
@@ -43,15 +34,24 @@
             <TableColumn fx:id="productPriceCol" prefWidth="126.39999389648438" text="Price/Cost per Unit" />
          </columns>
       </TableView>
-      <TextField layoutX="879.0" layoutY="71.0" onAction="#onActionSearchProducts" prefHeight="26.0" prefWidth="193.0" promptText="Search by Product ID or Name" />
+      <TextField fx:id="partSearch" layoutX="324.0" layoutY="71.0" onAction="#onActionSearchParts" prefHeight="26.0" prefWidth="193.0" promptText="Search by Part ID or Name" />
+      <TextField fx:id="productSearch" layoutX="879.0" layoutY="71.0" onAction="#onActionSearchProducts" prefHeight="26.0" prefWidth="193.0" promptText="Search by Product ID or Name" />
+      <Label layoutX="48.0" layoutY="74.0" text="Parts">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="317.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionAddPart" text="Add" />
+      <Button layoutX="380.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionModifyPart" text="Modify" />
+      <Button layoutX="463.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionDeletePart" text="Delete" />
       <Label layoutX="603.0" layoutY="74.0" text="Products">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <Button layoutX="872.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionAddProduct" text="Add" />
       <Button layoutX="935.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionModifyProduct" text="Modify" />
       <Button layoutX="1018.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionDeleteProduct" text="Delete" />
-      <Button layoutX="872.0" layoutY="309.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionAddProduct" text="Add" />
       <Button layoutX="983.0" layoutY="372.0" minWidth="54.0" mnemonicParsing="false" onAction="#onActionExitApp" text="Exit" />
       <Label fx:id="deleteProductWarning" layoutX="604.0" layoutY="363.0" textFill="RED" />
    </children>

@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Inventory;
 import model.Part;
@@ -75,6 +72,10 @@ public class ModifyProductController implements Initializable {
 
     @FXML
     private Label addProductWarning;
+
+    @FXML
+    private TextField partSearch;
+
 
     private ObservableList<Part> selectedParts = FXCollections.observableArrayList();
 
@@ -147,6 +148,15 @@ public class ModifyProductController implements Initializable {
     void onActionAddPart(ActionEvent event) {
         if(availPartsTableView.getSelectionModel().getSelectedItem() != null) {
             addSelectedPart(availPartsTableView.getSelectionModel().getSelectedItem());
+            partSearch.clear();
+            availPartsTableView.setItems(Inventory.getAllParts());
+            availPartsTableView.getSelectionModel().selectFirst();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Add Part");
+            alert.setContentText("Please select a part to add.");
+            alert.show();
         }
     }
 
@@ -167,22 +177,29 @@ public class ModifyProductController implements Initializable {
      */
     @FXML
     void onActionRemovePart(ActionEvent event) {
-
-/*
-        // Deletes using the Part ID -- removes the first part with matching ID
-        try {
-            removeSelectedPart(productPartsTableView.getSelectionModel().getSelectedItem().getId());
-
-        } catch (NullPointerException e){
-
+        if (selectedParts.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Remove Part");
+            alert.setContentText("Cannot remove from an empty list.");
+            alert.show();
         }
-*/
-
-        // Deletes using the Index position
-        try {
-            removeSelectedPartIndex(productPartsTableView.getSelectionModel().getSelectedIndex());
-
-        } catch (IndexOutOfBoundsException ignored){ }
+        else {
+            try {
+                int index = productPartsTableView.getSelectionModel().getSelectedIndex();
+                String name = productPartsTableView.getSelectionModel().getSelectedItem().getName();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Remove Part");
+                alert.setContentText("Are you sure you want to remove the " + name + "?");
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    removeSelectedPartIndex(index);
+                }
+            } catch (NullPointerException ignored){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Remove Part");
+                alert.setContentText("Please select a part to remove.");
+                alert.show();
+            }
+        }
     }
 
     /** On Button Press, this method will verify input and save the Product to the allProducts list and return the user to the Main Menu.
@@ -216,11 +233,49 @@ public class ModifyProductController implements Initializable {
     }
 
     /** After hitting "Enter" key in the search field, this method will search and display parts.
-     * @// FIXME: 5/16/2022 Build me!
      * @param event the click event
      */
     @FXML
     void onActionSearchAvailableParts(ActionEvent event) {
+
+        ObservableList<Part> searchedParts = FXCollections.observableArrayList();
+
+        try {
+            int tryId = Integer.parseInt(partSearch.getText().strip());
+            if (Inventory.lookupPart(tryId) == null) {
+                availPartsTableView.setItems(Inventory.getAllParts());
+                System.out.println("Didn't find with an INT");
+                partSearch.clear();
+                availPartsTableView.getSelectionModel().selectFirst();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Failed Search");
+                alert.setContentText("Part ID number not found.");
+                alert.show();
+                return;
+            }
+            else {
+                searchedParts.add(Inventory.lookupPart(tryId));
+                availPartsTableView.setItems(searchedParts);
+            }
+        }  catch (NumberFormatException ignored) { }
+
+        if (searchedParts.isEmpty()) {
+            String tryName = partSearch.getText();
+            if (Inventory.lookupPart(tryName) != null) {
+                searchedParts.addAll(Inventory.lookupPart(tryName));
+                availPartsTableView.setItems(searchedParts);
+            }
+            else {
+                availPartsTableView.setItems(Inventory.getAllParts());
+                System.out.println("Failed with a STRING");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Failed Search");
+                alert.setContentText("Matching part not found.");
+                alert.show();
+            }
+        }
+        partSearch.clear();
+        availPartsTableView.getSelectionModel().selectFirst();
 
     }
 

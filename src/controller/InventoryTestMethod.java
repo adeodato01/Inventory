@@ -114,7 +114,7 @@ public class InventoryTestMethod {
 
     /** This method checks the validity of inputs
      * <p>
-     * <br>
+     * RUNTIME ERROR<br>
      * Testing and research meant that parseInt requires whitespace to be removed
      * (as opposed to the parseDouble method). Discovered on 5/18/2022.
      * <p>

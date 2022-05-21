@@ -14,7 +14,13 @@ import model.Outsourced;
 import model.Product;
 
 /** This is the Main class. The app runs from this class.
- *
+ * <p>
+ *  FUTURE ENHANCEMENT<br>
+ *  The ability to warn the user a Part is deleted that's associated with a Product.
+ * </p>
+ * <p>
+ * @// FIXME: 5/20/2022 include JavaDoc file location!!
+ * </p>
  */
 public class InventoryTestMain extends Application {
 

@@ -62,14 +62,14 @@
          </children>
       </VBox>
       <Pane layoutX="518.0" layoutY="210.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextField fx:id="productNameTxt" layoutX="118.0" layoutY="245.0" minWidth="40.0" prefHeight="26.0" prefWidth="158.0" />
       <TextField fx:id="productIdTxt" disable="true" editable="false" layoutX="118.0" layoutY="202.0" minWidth="40.0" prefHeight="26.0" prefWidth="158.0">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="productPriceTxt" layoutX="118.0" layoutY="327.0" minWidth="40.0" prefHeight="26.0" prefWidth="83.0" />
+      <TextField fx:id="productNameTxt" layoutX="118.0" layoutY="245.0" minWidth="40.0" prefHeight="26.0" prefWidth="158.0" />
       <TextField fx:id="productInvTxt" layoutX="118.0" layoutY="286.0" minWidth="40.0" prefHeight="26.0" prefWidth="83.0" />
+      <TextField fx:id="productPriceTxt" layoutX="118.0" layoutY="327.0" minWidth="40.0" prefHeight="26.0" prefWidth="83.0" />
       <TextField fx:id="productMaxTxt" layoutX="118.0" layoutY="371.0" minWidth="40.0" prefHeight="26.0" prefWidth="83.0" />
       <TextField fx:id="productMinTxt" layoutX="261.0" layoutY="371.0" minWidth="40.0" prefHeight="26.0" prefWidth="83.0" />
       <Label layoutX="233.0" layoutY="376.0" text="Min">
@@ -77,6 +77,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <TextField fx:id="partSearch" layoutX="662.0" layoutY="64.0" onAction="#onActionSearchAvailableParts" prefHeight="26.0" prefWidth="176.0" promptText="Search by Part ID or Name" />
+      <Button layoutX="698.0" layoutY="298.0" mnemonicParsing="false" onAction="#onActionAddPart" text="Add Part to Product" />
+      <Button layoutX="692.0" layoutY="544.0" mnemonicParsing="false" onAction="#onActionRemovePart" prefHeight="26.0" prefWidth="145.0" text="Remove Associated Part" />
+      <Button layoutX="786.0" layoutY="591.0" minWidth="52.0" mnemonicParsing="false" onAction="#onActionCancelProductCreation" text="Cancel" />
+      <Button layoutX="692.0" layoutY="591.0" minWidth="52.0" mnemonicParsing="false" onAction="#onActionSaveProduct" text="Save" />
       <TableView fx:id="availPartsTableView" layoutX="407.0" layoutY="97.0" prefHeight="191.0" prefWidth="431.0">
         <columns>
             <TableColumn fx:id="availPartIdCol" prefWidth="51.99993896484375" text="Part ID" />
@@ -93,11 +98,6 @@
             <TableColumn fx:id="productPartPriceCol" prefWidth="122.0" text="Price/Cost per Unit" />
          </columns>
       </TableView>
-      <Button layoutX="786.0" layoutY="591.0" minWidth="52.0" mnemonicParsing="false" onAction="#onActionCancelProductCreation" text="Cancel" />
-      <Button layoutX="692.0" layoutY="591.0" minWidth="52.0" mnemonicParsing="false" onAction="#onActionSaveProduct" text="Save" />
-      <Button layoutX="698.0" layoutY="298.0" mnemonicParsing="false" onAction="#onActionAddPart" text="Add Part to Product" />
-      <Button layoutX="692.0" layoutY="544.0" mnemonicParsing="false" onAction="#onActionRemovePart" prefHeight="26.0" prefWidth="145.0" text="Remove Associated Part" />
-      <TextField layoutX="662.0" layoutY="64.0" onAction="#onActionSearchAvailableParts" prefHeight="26.0" prefWidth="176.0" promptText="Search by Part ID or Name" />
       <Label layoutX="412.0" layoutY="73.0" text="Available Parts">
          <font>
             <Font name="System Bold" size="12.0" />
