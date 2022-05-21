@@ -207,6 +207,7 @@ public class MainMenuController implements Initializable {
             else {
                 searchedParts.add(Inventory.lookupPart(tryId));
                 partTableView.setItems(searchedParts);
+                //return;
             }
         }  catch (NumberFormatException ignored) { }
 
